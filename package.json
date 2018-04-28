@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "migrate": "knex migrate:latest --knexfile model/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile model/knexfile.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -13,5 +15,8 @@
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
     "node-sass-middleware": "0.11.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.1"
   }
 }
