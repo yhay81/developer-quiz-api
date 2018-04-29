@@ -3,7 +3,7 @@ exports.up = (knex, Promise) =>
     t.increments().index();
 
     t
-      .string("name", 31)
+      .string("genre_name", 31)
       .unique()
       .notNullable()
       .index();
