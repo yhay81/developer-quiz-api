@@ -80,21 +80,36 @@ module.exports = knex => {
         .del()
     );
 
-  const getRandomQuiz = () =>
-    Promise.resolve(knex("quizzes").count(0))
-      .then(result => {
+  const getRandomQuiz = genreId => {
+    let randomQuiz;
+    if (genreId) {
+      randomQuiz = Promise.resolve(
+        knex("quizzes")
+          .where({ genre_id: genreId })
+          .count(0)
+      ).then(result => {
+        const rand = Math.floor(parseInt(result[0].count) * Math.random());
+        return quizzes()
+          .where({ genre_id: genreId })
+          .offset(rand)
+          .limit(1);
+      });
+    } else {
+      randomQuiz = Promise.resolve(knex("quizzes").count(0)).then(result => {
         const rand = Math.floor(parseInt(result[0].count) * Math.random());
         return quizzes()
           .offset(rand)
           .limit(1);
-      })
-      .then(dbQuizzes => {
-        if (dbQuizzes.rowCount !== 0) {
-          return new Quiz(dbQuizzes[0]);
-        } else {
-          throw new Error("There is no quiz yet.");
-        }
       });
+    }
+    return randomQuiz.then(dbQuizzes => {
+      if (dbQuizzes.rowCount !== 0) {
+        return new Quiz(dbQuizzes[0]);
+      } else {
+        throw new Error("There is no quiz yet.");
+      }
+    });
+  };
 
   return {
     getAllQuiz,

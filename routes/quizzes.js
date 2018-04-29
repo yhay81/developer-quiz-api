@@ -30,6 +30,14 @@ module.exports = quizzes => {
       .catch(err => res.status(400).send(err.message))
   );
 
+  router.get("/random/:genreId", (req, res) => {
+    const genreId = req.params.genreId;
+    quizzes
+      .getRandomQuiz(genreId)
+      .then(quiz => res.status(200).json(quiz))
+      .catch(err => res.status(400).send(err.message));
+  });
+
   router.get("/:id", (req, res) => {
     const id = req.params.id;
     return quizzes
