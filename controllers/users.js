@@ -33,10 +33,7 @@ const post = (req, res, next) => {
       knex("users").insert({ username, hashed_password })
     )
     .then(() => knex("users").where({ username }))
-    .then(users => {
-      const user_objects = users.map(user => new User(user));
-      return res.status(200).json(user_objects);
-    })
+    .then(users => res.status(200).json(new User(users[0])))
     .catch(err => res.status(400).send(err.message));
 };
 
@@ -61,7 +58,7 @@ const putEach = (req, res, next) => {
   const newUsername = req.body.newUsername ? req.body.newUsername : oldUsername;
   const newPassword = req.body.newPassword ? req.body.newPassword : oldPassword;
   return authenticate(oldUsername, password)
-    .then(() => bcrypt.hash(newPassword, saltRounds))
+    .then(user => bcrypt.hash(newPassword, saltRounds))
     .then(newHashedPassword =>
       knex("users")
         .where({ username })
@@ -79,7 +76,7 @@ const deleteEach = (req, res, next) => {
   const username = req.params.username;
   const password = req.body.password;
   return authenticate(username, password)
-    .then(() =>
+    .then(user =>
       knex("users")
         .where({ username })
         .del()
