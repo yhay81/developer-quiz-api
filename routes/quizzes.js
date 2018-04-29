@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const users = require("../controllers/users");
+const quizzes = require("../controllers/quizzes");
 
-router.get("/", users.get);
-router.post("/", users.post);
+router.get("/", quizzes.get);
+router.post("/", quizzes.post);
 
-router.get("/:id", users.getEach);
-router.delete("/:id", users.deleteEach);
+router.get("/random", quizzes.getRandom);
 
-router.delete("/random", users.getRandom);
+router.get("/:id", quizzes.getEach);
+router.delete("/:id", quizzes.deleteEach);
 
 module.exports = router;

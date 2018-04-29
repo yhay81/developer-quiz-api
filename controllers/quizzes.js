@@ -116,19 +116,22 @@ const deleteEach = (req, res, next) => {
     .catch(err => res.status(400).send(err.message));
 };
 
-const getRandom = (req, res, next) => {
-  return Promise.resolve(
-    knex.raw("SELECT * FROM quizzes ORDER BY RANDOM() LIMIT 1")
-  )
+const getRandom = (req, res, next) =>
+  Promise.resolve(knex("quizzes").count(0))
+    .then(result => {
+      const rand = Math.floor(parseInt(result[0].count) * Math.random());
+      return knex("quizzes")
+        .offset(rand)
+        .limit(1);
+    })
     .then(quizzes => {
-      if (quizzes.length !== 0) {
+      if (quizzes.rowCount !== 0) {
         return res.status(200).json(new Quiz(quizzes[0]));
       } else {
         return res.status(401).send("There is no quiz yet.");
       }
     })
     .catch(err => res.status(400).send(err.message));
-};
 
 module.exports = {
   get,
