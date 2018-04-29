@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "migrate": "knex migrate:latest --knexfile model/knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile model/knexfile.js"
+    "test": "mocha tests/routes.js",
+    "migrate": "knex migrate:latest --knexfile models/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile models/knexfile.js"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
@@ -20,6 +21,10 @@
     "pg": "^7.4.1"
   },
   "devDependencies": {
-    "prettier": "^1.12.1"
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.1.1",
+    "prettier": "^1.12.1",
+    "sinon": "^4.5.0"
   }
 }

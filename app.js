@@ -5,10 +5,16 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const sassMiddleware = require("node-sass-middleware");
 
+const knex = require("knex")(require("./models/knexfile"));
+
+const users = require("./models/users")(knex);
+const genres = require("./models/genres")(knex);
+const quizzes = require("./models/quizzes")(knex);
+
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const genresRouter = require("./routes/genres");
-const quizzesRouter = require("./routes/quizzes");
+const usersRouter = require("./routes/users")(users);
+const genresRouter = require("./routes/genres")(genres);
+const quizzesRouter = require("./routes/quizzes")(quizzes);
 
 const app = express();
 
@@ -30,7 +36,7 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/docs", indexRouter);
+app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/genres", genresRouter);
 app.use("/api/quizzes", quizzesRouter);

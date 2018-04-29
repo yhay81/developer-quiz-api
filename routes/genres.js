@@ -1,8 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const genres = require("../controllers/genres");
+const router = require("express").Router();
 
-router.get("/", genres.get);
-router.get("/:id", genres.getEach);
-
-module.exports = router;
+module.exports = genres => {
+  router.get("/", (req, res) => {
+    genres
+      .getAllgenres()
+      .then(user => res.status(200).json(user))
+      .catch(err => res.status(400).send(err.message));
+  });
+  return router;
+};
