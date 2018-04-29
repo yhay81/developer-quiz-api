@@ -39,8 +39,7 @@ const methods = [
     id: 7,
     name: "POST /api/users/",
     body: "Use this to register as a author.",
-    postData:
-      "{quiz: string,correct_answer: string, wrong_answer1: string,wrong_answer2: string,wrong_answer3: string,authour: string(OPTIONAL), password: string(OPTIONAL})"
+    postData: "{username: string, password: string}"
   },
   {
     id: 8,
@@ -53,7 +52,7 @@ const methods = [
     id: 9,
     name: "DELETE /api/users/:id",
     body: "Use this to delete your user info.",
-    postData: "{ password: string  }"
+    postData: "{ password: string }"
   }
 ];
 router.get("/", (req, res, next) =>

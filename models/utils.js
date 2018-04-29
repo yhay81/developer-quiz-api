@@ -7,10 +7,10 @@ module.exports = knex => {
         if (users.length === 0) {
           return res.status(401).send("username does not match");
         } else {
-          return Promise.all(
+          return Promise.all([
             users[0],
             bcrypt.compare(password, users[0].hashed_password)
-          );
+          ]);
         }
       })
       .then(([user, passMached]) => {

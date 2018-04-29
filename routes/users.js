@@ -9,7 +9,7 @@ module.exports = users => {
   );
 
   router.post("/", (req, res) => {
-    const username = req.params.username;
+    const username = req.body.username;
     const password = req.body.password;
     return users
       .insertUser(username, password)

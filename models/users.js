@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const utils = require("./utils");
 
 class User {
   constructor(dbUser) {
@@ -10,7 +11,7 @@ class User {
 }
 
 module.exports = knex => {
-  const authenticate = require("./utils")(knex).authenticate;
+  const authenticate = utils(knex).authenticate;
 
   const getAllUsers = () =>
     Promise.resolve(knex("users").select()).then(dbUsers =>

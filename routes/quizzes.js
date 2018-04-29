@@ -12,10 +12,12 @@ module.exports = quizzes => {
     const data = {
       quiz: req.body.quiz,
       correctAnswer: req.body.correct_answer,
-      wrongAnswer1: req.body.wron_answer1,
+      wrongAnswer1: req.body.wrong_answer1,
       wrongAnswer2: req.body.wrong_answer2,
       wrongAnswer3: req.body.wrong_answer3,
-      genreName: req.body.genre_name
+      genreName: req.body.genre_name,
+      author: req.body.author,
+      password: req.body.password
     };
     return quizzes
       .insertQuiz(data)

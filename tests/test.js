@@ -3,7 +3,6 @@ const PORT = process.env.PORT || 3000;
 const chai = require("chai");
 const expect = chai.expect;
 const chaiHttp = require("chai-http");
-const sinon = require("sinon");
 const app = require("../app");
 
 chai.should();
@@ -118,6 +117,26 @@ describe("GET /api/quizzes/random", () => {
     chai
       .request(app)
       .get("/api/quizzes/random")
+      .set("Content-Type", "application/json")
+      .end((_, res) => {
+        response = res;
+        done();
+      });
+  });
+
+  it("should return status 200.", done => {
+    response.status.should.equal(200);
+    done();
+  });
+});
+
+describe("GET /api/quizzes/random/:genreId", () => {
+  let response;
+
+  before(done => {
+    chai
+      .request(app)
+      .get("/api/quizzes/random/4")
       .set("Content-Type", "application/json")
       .end((_, res) => {
         response = res;

@@ -1,3 +1,4 @@
+const utils = require("./utils");
 class Quiz {
   constructor(dbQuiz) {
     this.id = dbQuiz.id;
@@ -13,7 +14,7 @@ class Quiz {
 }
 
 module.exports = knex => {
-  const authenticate = require("./utils").authenticate;
+  const authenticate = utils(knex).authenticate;
   const quizzes = () =>
     knex("quizzes")
       .column(
@@ -23,6 +24,7 @@ module.exports = knex => {
         "quizzes.wrong_answer1",
         "quizzes.wrong_answer2",
         "quizzes.wrong_answer3",
+        "quizzes.created_at",
         "genres.genre_name",
         "users.username as author"
       )
@@ -37,12 +39,14 @@ module.exports = knex => {
   const insertQuiz = data => {
     const dbUser = data.author
       ? authenticate(data.author, data.password)
-      : Promise.resolve({ id: 1, username: "Anonymous" });
+      : Promise.resolve({ id: 2, username: "Anonymous" });
     const genres = data.genreName
       ? knex("genres").where({ genre_name: data.genreName })
       : [{ id: 1, genre_name: "Uncategorized" }];
     return dbUser
-      .then(user => Promise.all([user, genres]))
+      .then(user => {
+        return Promise.all([user, genres]);
+      })
       .then(([user, genres]) => {
         if (genres.length === 0) {
           throw new Error(
@@ -52,15 +56,15 @@ module.exports = knex => {
           return knex("quizzes").insert({
             quiz: data.quiz,
             correct_answer: data.correctAnswer,
-            wron_answer1: data.wrongAnswer1,
+            wrong_answer1: data.wrongAnswer1,
             wrong_answer2: data.wrongAnswer2,
             wrong_answer3: data.wrongAnswer3,
-            genre_id: genres[0].genre_id,
+            genre_id: genres[0].id,
             author_id: user.id
           });
         }
       })
-      .then(() => quizzes().where({ quiz }))
+      .then(() => quizzes().where({ quiz: data.quiz }))
       .then(quizzes => new Quiz(quizzes[0]));
   };
 

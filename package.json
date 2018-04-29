@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha tests/routes.js",
+    "test": "mocha tests/test.js",
     "migrate": "knex migrate:latest --knexfile models/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile models/knexfile.js"
   },
@@ -24,7 +24,6 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "mocha": "^5.1.1",
-    "prettier": "^1.12.1",
-    "sinon": "^4.5.0"
+    "prettier": "^1.12.1"
   }
 }
