@@ -8,13 +8,16 @@
     "rollback": "knex migrate:rollback --knexfile model/knexfile.js"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "knex": "^0.14.6",
     "morgan": "~1.9.0",
-    "node-sass-middleware": "0.11.0"
+    "node-sass-middleware": "0.11.0",
+    "pg": "^7.4.1"
   },
   "devDependencies": {
     "prettier": "^1.12.1"
