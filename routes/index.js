@@ -15,15 +15,26 @@ const methods = [
   {
     id: 3,
     name: "POST /api/quizzes/",
-    body: "Use this to add one quote to our database.",
+    body: "Use this to add one quiz to our database.",
     postData:
-      "{quiz: string,correct_answer: string, wrong_answer1: string,wrong_answer2: string,wrong_answer3: string,authour: string(OPTIONAL), password: string(OPTIONAL)}"
+      '{\n\
+    "quiz": "string",\n\
+    "correct_answer": "string",\n\
+    "wrong_answer1": "string",\n\
+    "wrong_answer2": "string",\n\
+    "wrong_answer3": "string",\n\
+    "authour": "string(OPTIONAL)",\n\
+    "password": "string(OPTIONAL)"\n\
+}'
   },
   {
     id: 4,
     name: "DELETE /api/quizzes/:id",
     body: "Use this replace a quize.",
-    postData: "{authour: string, password: string}"
+    postData: '{\n\
+    "authour": "string",\n\
+    "password": "string"\n\
+}'
   },
   {
     id: 5,
@@ -39,20 +50,29 @@ const methods = [
     id: 7,
     name: "POST /api/users/",
     body: "Use this to register as a author.",
-    postData: "{username: string, password: string}"
+    postData: '{\n\
+    "username": "string",\n\
+    "password": "string"\n\
+}'
   },
   {
     id: 8,
     name: "PUT/PATCH /api/users/:username",
     body: "Use this to update your user info.",
     postData:
-      "{ password: string, newUsername: string(OPTIONAL), newPassword: string(OPTIONAL) }"
+      '{\n\
+    "password": "string",\n\
+    "newUsername": "string(OPTIONAL)",\n\
+    "newPassword": "string(OPTIONAL)"\n\
+}'
   },
   {
     id: 9,
     name: "DELETE /api/users/:id",
     body: "Use this to delete your user info.",
-    postData: "{ password: string }"
+    postData: '{\n\
+    "password": "string"\n\
+}'
   }
 ];
 router.get("/", (req, res, next) =>

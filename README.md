@@ -11,7 +11,7 @@ And you can add quizzes.
 
 ## Setup
 
-Create developer quiz database.
+Initialize node dependencies.
 
 ```
 yarn install
