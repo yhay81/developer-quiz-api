@@ -3,17 +3,43 @@
 This API provides four-choice quizzes.
 And you can add quizzes.
 
-## Install
+## Requirements
 
-`yarn install`
+* node
+* npm/yarn
+* postgres
 
-`psql -f createdb.sql`
+## Setup
 
-`yarn migrate`
+Create developer quiz database.
 
-`psql -d developer_quiz -f dataset.sql`
+```
+yarn install
+```
 
-`yarn start`
+Create developer quiz database.
+
+```
+psql -f createdb.sql
+```
+
+Create database tables.
+
+```
+yarn migrate
+```
+
+Insert some data.
+
+```
+psql -d developer_quiz -f dataset.sql
+```
+
+Launch the server.
+
+```
+yarn start
+```
 
 ## Methods
 
@@ -29,13 +55,13 @@ Add one quiz.
 
 ```json
 {
-  quiz: string,
-  correct_answer: string,
-  wrong_answer1: string,
-  wrong_answer2: string,
-  wrong_answer3: string,
-  authour: string, // OPTIONAL
-  password: string // OPTIONAL
+  "quiz": "string",
+  "correct_answer": "string",
+  "wrong_answer1": "string",
+  "wrong_answer2": "string",
+  "wrong_answer3": "string",
+  "authour": "string(OPTIONAL)",
+  "password": "string(OPTIONAL)"
 }
 ```
 
@@ -55,8 +81,8 @@ Delete particuler quiz.
 
 ```json
 {
-  authour: string,
-  password: string
+  "authour": "string",
+  "password": "string"
 }
 ```
 
@@ -76,8 +102,8 @@ Regester as a user.
 
 ```json
 {
-  username: string,
-  password: string
+  "username": "string",
+  "password": "string"
 }
 ```
 
@@ -93,9 +119,9 @@ Update user information.
 
 ```json
 {
-  password: string,
-  newUsername: string, // OPTIONAL
-  newPassword: string // OPTIONAL
+  "password": "string",
+  "newUsername": "string(OPTIONAL)",
+  "newPassword": "string(OPTIONAL)"
 }
 ```
 
@@ -107,7 +133,7 @@ Delete a user.
 
 ```json
 {
-  password: string
+  "password": "string"
 }
 ```
 
