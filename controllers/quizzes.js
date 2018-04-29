@@ -16,7 +16,7 @@ class Quiz {
     this.id = dbQuiz.id;
     this.quiz = dbQuiz.quiz;
     this.correctAnswer = dbQuiz.correct_answer;
-    this.wrongAnswer1 = dbQuiz.wron_answer1;
+    this.wrongAnswer1 = dbQuiz.wrong_answer1;
     this.wrongAnswer2 = dbQuiz.wrong_answer2;
     this.wrongAnswer3 = dbQuiz.wrong_answer3;
     this.genreName = dbQuiz.genre_name;
