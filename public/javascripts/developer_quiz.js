@@ -4,16 +4,20 @@ const one = document.getElementById("answer1");
 const two = document.getElementById("answer2");
 const three = document.getElementById("answer3");
 const four = document.getElementById("answer4");
+const genre = document.getElementById("genre");
+const author = document.getElementById("author");
 
 fetch(url)
   .then(res => res.json(url))
   .then(quizJSON => {
     console.log("a", quizJSON);
-    probrem.innerText = quizJSON.quiz;
+    probrem.innerText = "Question: " + quizJSON.quiz;
     one.innerText = quizJSON.correctAnswer;
     two.innerText = quizJSON.wrongAnswer1;
     three.innerText = quizJSON.wrongAnswer2;
     four.innerText = quizJSON.wrongAnswer3;
+    genre.innerHTML = "Genre: " + quizJSON.genre;
+    author.innerHTML = "Author: " + quizJSON.author;
   });
 
 one.addEventListener("click", answer(1));

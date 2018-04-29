@@ -1,8 +1,44 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  background-color: #272822;
+  font: 14px 'Source Code Pro', monospace;
+  color: #ffffff; }
+
+h3 {
+  color: #f92672; }
 
 a {
-  color: #00B7FF; }
+  color: #2A71BE; }
+
+#quiz {
+  background-color: #1b1d16;
+  padding: 20px;
+  border-radius: 16px;
+  color: #ae81ff; }
+
+#probrem {
+  font-size: 16px; }
+
+.answer {
+  margin: 1em 1em;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  font-size: 16px;
+  color: #66d9ef;
+  border: solid 2px #66d9ef;
+  border-radius: 3px;
+  transition: .4s;
+  max-width: 500px; }
+
+.answer:active {
+  background: #66d9ef;
+  color: white; }
+
+#genre {
+  color: #75715e; }
+
+#author {
+  color: #75715e; }
 
 /*# sourceMappingURL=style.css.map */

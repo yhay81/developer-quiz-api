@@ -110,3 +110,23 @@ describe("GET /api/quizzes/", () => {
     done();
   });
 });
+
+describe("GET /api/quizzes/random", () => {
+  let response;
+
+  before(done => {
+    chai
+      .request(app)
+      .get("/api/quizzes/random")
+      .set("Content-Type", "application/json")
+      .end((_, res) => {
+        response = res;
+        done();
+      });
+  });
+
+  it("should return status 200.", done => {
+    response.status.should.equal(200);
+    done();
+  });
+});
