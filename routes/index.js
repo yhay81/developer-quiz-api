@@ -17,7 +17,7 @@ const methods = [
     name: "POST /api/quizzes/",
     body: "Use this to add one quote to our database.",
     postData:
-      "{quiz: string,correct_answer: string, wrong_answer1: string,wrong_answer2: string,wrong_answer3: string,authour: string, // OPTIONAL password: string // OPTIONAL}"
+      "{quiz: string,correct_answer: string, wrong_answer1: string,wrong_answer2: string,wrong_answer3: string,authour: string(OPTIONAL), password: string(OPTIONAL)}"
   },
   {
     id: 4,
@@ -40,14 +40,14 @@ const methods = [
     name: "POST /api/users/",
     body: "Use this to register as a author.",
     postData:
-      "{quiz: string,correct_answer: string, wrong_answer1: string,wrong_answer2: string,wrong_answer3: string,authour: string, // OPTIONAL password: string // OPTIONAL}"
+      "{quiz: string,correct_answer: string, wrong_answer1: string,wrong_answer2: string,wrong_answer3: string,authour: string(OPTIONAL), password: string(OPTIONAL})"
   },
   {
     id: 8,
     name: "PUT/PATCH /api/users/:username",
     body: "Use this to update your user info.",
     postData:
-      "{ password: string, newUsername: string, // OPTIONAL newPassword: string // OPTIONAL }"
+      "{ password: string, newUsername: string(OPTIONAL), newPassword: string(OPTIONAL) }"
   },
   {
     id: 9,

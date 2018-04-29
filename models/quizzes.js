@@ -14,9 +14,23 @@ class Quiz {
 
 module.exports = knex => {
   const authenticate = require("./utils").authenticate;
+  const quizzes = () =>
+    knex("quizzes")
+      .column(
+        "quizzes.id",
+        "quizzes.quiz",
+        "quizzes.correct_answer",
+        "quizzes.wrong_answer1",
+        "quizzes.wrong_answer2",
+        "quizzes.wrong_answer3",
+        "genres.genre_name",
+        "users.username as author"
+      )
+      .leftJoin("users", "quizzes.author_id", "users.id")
+      .leftJoin("genres", "quizzes.genre_id", "genres.id");
 
   const getAllQuiz = () =>
-    Promise.resolve(knex("quizzes").select()).then(dbQuizzes =>
+    Promise.resolve(quizzes()).then(dbQuizzes =>
       dbQuizzes.map(dbQuiz => new Quiz(dbQuiz))
     );
 
@@ -46,7 +60,7 @@ module.exports = knex => {
           });
         }
       })
-      .then(() => knex("quizzes").where({ quiz }))
+      .then(() => quizzes().where({ quiz }))
       .then(quizzes => new Quiz(quizzes[0]));
   };
 
@@ -70,7 +84,7 @@ module.exports = knex => {
     Promise.resolve(knex("quizzes").count(0))
       .then(result => {
         const rand = Math.floor(parseInt(result[0].count) * Math.random());
-        return knex("quizzes")
+        return quizzes()
           .offset(rand)
           .limit(1);
       })

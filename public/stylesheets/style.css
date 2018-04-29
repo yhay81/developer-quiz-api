@@ -2,7 +2,7 @@
 body {
   padding: 50px;
   background-color: #272822;
-  font: 14px 'Source Code Pro', monospace;
+  font: 16px 'Source Code Pro', monospace;
   color: #ffffff; }
 
 h3 {
@@ -31,8 +31,12 @@ a {
   transition: .4s;
   max-width: 500px; }
 
-.answer:active {
+.correct:active {
   background: #66d9ef;
+  color: white; }
+
+.wrong:active {
+  background: #f92672;
   color: white; }
 
 #genre {
@@ -40,5 +44,14 @@ a {
 
 #author {
   color: #75715e; }
+
+h5 {
+  margin: 6px 0; }
+
+code {
+  font-size: 14px; }
+
+.api-method {
+  margin-bottom: 32px; }
 
 /*# sourceMappingURL=style.css.map */
